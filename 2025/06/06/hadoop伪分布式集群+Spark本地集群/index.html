@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>hadoop伪分布式集群+Spark本地集群 | zh</title><meta name="author" content="哈密瓜"><meta name="copyright" content="哈密瓜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="hadoop伪分布式集群部署sudo vim &#x2F;etc&#x2F;profile 配置系统环境变量1234567export JAVA_HOME&#x3D;&#x2F;opt&#x2F;java&#x2F;jdk1.8.0_411export HADOOP_HOME&#x3D;&#x2F;opt&#x2F;hadoop&#x2F;hadoop-3.3.6export SPARK_HOME&#x3D;&#x2F;opt&#x2F;spark&#x2F;spark-3.5.3export JRE_HOME&#x3D;$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hadoop伪分布式集群+Spark本地集群">
+<meta property="og:url" content="http://example.com/2025/06/06/hadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4+Spark%E6%9C%AC%E5%9C%B0%E9%9B%86%E7%BE%A4/index.html">
+<meta property="og:site_name" content="zh">
+<meta property="og:description" content="hadoop伪分布式集群部署sudo vim &#x2F;etc&#x2F;profile 配置系统环境变量1234567export JAVA_HOME&#x3D;&#x2F;opt&#x2F;java&#x2F;jdk1.8.0_411export HADOOP_HOME&#x3D;&#x2F;opt&#x2F;hadoop&#x2F;hadoop-3.3.6export SPARK_HOME&#x3D;&#x2F;opt&#x2F;spark&#x2F;spark-3.5.3export JRE_HOME&#x3D;$">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/25.png">
+<meta property="article:published_time" content="2025-06-06T09:16:35.000Z">
+<meta property="article:modified_time" content="2025-06-05T08:54:36.317Z">
+<meta property="article:author" content="哈密瓜">
+<meta property="article:tag" content="导航">
+<meta property="article:tag" content="分享">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/25.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/06/06/hadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4+Spark%E6%9C%AC%E5%9C%B0%E9%9B%86%E7%BE%A4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hadoop伪分布式集群+Spark本地集群',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-06-05 16:54:36'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4066449_d5kq6u6u9dj.css"><link rel="stylesheet" href="/css/mine.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avator.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive-solid"></i><span> 归档</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/25.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zh"><span class="site-name">zh</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive-solid"></i><span> 归档</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">hadoop伪分布式集群+Spark本地集群</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-06T09:16:35.000Z" title="发表于 2025-06-06 17:16:35">2025-06-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-05T08:54:36.317Z" title="更新于 2025-06-05 16:54:36">2025-06-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="hadoop伪分布式集群+Spark本地集群"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="hadoop伪分布式集群部署"><a href="#hadoop伪分布式集群部署" class="headerlink" title="hadoop伪分布式集群部署"></a>hadoop伪分布式集群部署</h1><h3 id="sudo-vim-etc-profile-配置系统环境变量"><a href="#sudo-vim-etc-profile-配置系统环境变量" class="headerlink" title="sudo vim &#x2F;etc&#x2F;profile 配置系统环境变量"></a>sudo vim &#x2F;etc&#x2F;profile 配置系统环境变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/opt/java/jdk1.8.0_411</span><br><span class="line">export HADOOP_HOME=/opt/hadoop/hadoop-3.3.6</span><br><span class="line">export SPARK_HOME=/opt/spark/spark-3.5.3</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;HADOOP_HOME&#125;/bin:$&#123;HADOOP_HOME&#125;/sbin:$&#123;JAVA_HOME&#125;/bin:$&#123;SPARK_HOME&#125;/bin:$PATH</span><br><span class="line">export HADOOP_USER_NAME=hadoop</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>source &#x2F;etc&#x2F;profile 使用配置生效</p>
+</li>
+<li><p>cd &#x2F;opt &amp; sudo mkdir hadoop 创建安装目录</p>
+</li>
+<li><p>sudo chown -R hadoop:hadoop hadoop 目录拥有者</p>
+</li>
+<li><p>tar -zxvf hadoop-3.3.6.tar.gz 解压缩</p>
+</li>
+<li><p>vim hadoop-env.sh 配置hadoop环境变量</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/opt/java/jdk1.8.0_411</span><br><span class="line"></span><br><span class="line">export HADOOP_HOME=/opt/hadoop/hadoop-3.3.6</span><br><span class="line"></span><br><span class="line">export HADOOP_CONF_DIR=$&#123;HADOOP_HOME&#125;/etc/hadoop</span><br><span class="line"></span><br><span class="line">export HDFS_NAMENODE_USER=hadoop</span><br><span class="line">export HDFS_DATANODE_USER=hadoop</span><br><span class="line">export HDFS_SECONDARYNAMENODE_USER=hadoop</span><br><span class="line">export YARN_RESOURCEMANAGER_USER=hadoop</span><br><span class="line">export YARN_NODEMANAGER_USER=hadoop</span><br></pre></td></tr></table></figure>
+
+<h2 id="vim-core-site-xml"><a href="#vim-core-site-xml" class="headerlink" title="vim core-site.xml"></a>vim core-site.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://hadoop24:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/opt/hadoop/bigdata/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.http.staticuser.user<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="vim-hdfs-site-xml"><a href="#vim-hdfs-site-xml" class="headerlink" title="vim hdfs-site.xml"></a>vim hdfs-site.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/opt/hadoop/bigdata/name<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>为了保证元数据的安全一般配置多个不同目录<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/opt/hadoop/bigdata/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>datanode的数据存储目录<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>HDFS的数据块的副本存储个数，默认是3<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.permissions.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="vim-mapred-site-xml"><a href="#vim-mapred-site-xml" class="headerlink" title="vim mapred-site.xml"></a>vim mapred-site.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.application.classpath<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>$HADOOP_HOME/share/hadoop/mapreduce/*:$HADOOP_HOME/share/hadoop/mapreduce/lib/*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="vim-yarn-site-xml"><a href="#vim-yarn-site-xml" class="headerlink" title="vim yarn-site.xml"></a>vim yarn-site.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- Site specific YARN configuration properties --&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- 指定ResourceManager的地址--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop24<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 指定reducer获取数据的方式--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.local-dirs<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/opt/hadoop/bigdata/yarn/nm<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>hdfs namenode -format</p>
+</li>
+<li><p>start-dfs.sh&#x2F;stop-dfs.sh</p>
+</li>
+<li><p>start-yarn.sh&#x2F;stop-yarn.sh</p>
+</li>
+<li><p>mapred –daemon start historyserver</p>
+</li>
+</ul>
+<h1 id="Spark本地集群安装部署"><a href="#Spark本地集群安装部署" class="headerlink" title="Spark本地集群安装部署"></a>Spark本地集群安装部署</h1><ul>
+<li><p>sudo mkdir spark</p>
+</li>
+<li><p>sudo chown -R hadoop:hadoop spark</p>
+</li>
+<li><p>tar -zxvf spark-3.5.3-bin-hadoop3.tgz</p>
+</li>
+<li><p>cd ${SPARK_HOME}\conf</p>
+</li>
+</ul>
+<h2 id="vim-spark-default-conf"><a href="#vim-spark-default-conf" class="headerlink" title="vim spark-default.conf"></a>vim spark-default.conf</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spark.eventLog.enabled           true</span><br><span class="line">spark.eventLog.dir               hdfs://hadoop24:9000/user/hadoop/spark/event_log</span><br><span class="line">spark.yarn.historyServer.address hadoop24:19888</span><br><span class="line">spark.history.ui.port 9091</span><br><span class="line">spark.executor.extraJavaOptions   -Xss32M</span><br></pre></td></tr></table></figure>
+
+<h2 id="vim-spark-env-sh"><a href="#vim-spark-env-sh" class="headerlink" title="vim spark-env.sh"></a>vim spark-env.sh</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/opt/java/jdk1.8.0_411</span><br><span class="line">export HADOOP_HOME=/opt/hadoop/hadoop-3.3.6</span><br><span class="line">export HADOOP_CONF_DIR=$&#123;HADOOP_HOME&#125;/etc/hadoop</span><br><span class="line">export YARN_CONF_DIR=$&#123;HADOOP_HOME&#125;/etc/hadoop</span><br><span class="line">export SPARK_DIST_CLASSPATH=$&#123;HADOOP_HOME&#125;/etc/hadoop:$&#123;HADOOP_HOME&#125;/share/hadoop/common/lib/*:$&#123;HADOOP_HOME&#125;/share/hadoop/common/*:$&#123;HADOOP_HOME&#125;/share/hadoop/hdfs:$&#123;HADOOP_HOME&#125;/share/hadoop/hdfs/lib/*:$&#123;HADOOP_HOME&#125;/share/hadoop/hdfs/*:$&#123;HADOOP_HOME&#125;/share/hadoop/mapreduce/*:$&#123;HADOOP_HOME&#125;/share/hadoop/yarn:$&#123;HADOOP_HOME&#125;/share/hadoop/yarn/lib/*:$&#123;HADOOP_HOME&#125;/share/hadoop/yarn/*</span><br><span class="line">export SPARK_MASTER_HOST=hadoop24</span><br><span class="line">export SPARK_MASTER_PORT=7077</span><br><span class="line">export SPARK_LOCAL_DIRS=/opt/spark/data</span><br></pre></td></tr></table></figure>
+
+<h2 id="vim-workders"><a href="#vim-workders" class="headerlink" title="vim workders"></a>vim workders</h2><figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop24</span><br></pre></td></tr></table></figure>
+
+<h4 id="cd-SPARK-HOME-sbin"><a href="#cd-SPARK-HOME-sbin" class="headerlink" title="cd ${SPARK_HOME}&#x2F;sbin"></a>cd ${SPARK_HOME}&#x2F;sbin</h4><h4 id="start-master-sh"><a href="#start-master-sh" class="headerlink" title=".&#x2F;start-master.sh"></a>.&#x2F;start-master.sh</h4><h4 id="start-worker-sh"><a href="#start-worker-sh" class="headerlink" title=".&#x2F;start-worker.sh"></a>.&#x2F;start-worker.sh</h4><h4 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h4><pre><code>11520 Jps
+6961 Worker
+6370 DataNode
+6196 NameNode
+4806 NodeManager
+4663 ResourceManager
+6825 Master
+6573 SecondaryNameNode
+5183 JobHistoryServer
+</code></pre>
+</article><div class="tag_share"><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/06/05/hello-world/" title="Hello World"><img class="cover" src="/img/17.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avator.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">哈密瓜</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhouhao-A1"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2"><span class="toc-number">1.</span> <span class="toc-text">hadoop伪分布式集群部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sudo-vim-etc-profile-%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.0.1.</span> <span class="toc-text">sudo vim &#x2F;etc&#x2F;profile 配置系统环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-core-site-xml"><span class="toc-number">1.1.</span> <span class="toc-text">vim core-site.xml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-hdfs-site-xml"><span class="toc-number">1.2.</span> <span class="toc-text">vim hdfs-site.xml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-mapred-site-xml"><span class="toc-number">1.3.</span> <span class="toc-text">vim mapred-site.xml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-yarn-site-xml"><span class="toc-number">1.4.</span> <span class="toc-text">vim yarn-site.xml</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Spark%E6%9C%AC%E5%9C%B0%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2"><span class="toc-number">2.</span> <span class="toc-text">Spark本地集群安装部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-spark-default-conf"><span class="toc-number">2.1.</span> <span class="toc-text">vim spark-default.conf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-spark-env-sh"><span class="toc-number">2.2.</span> <span class="toc-text">vim spark-env.sh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-workders"><span class="toc-number">2.3.</span> <span class="toc-text">vim workders</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cd-SPARK-HOME-sbin"><span class="toc-number">2.3.0.1.</span> <span class="toc-text">cd ${SPARK_HOME}&#x2F;sbin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#start-master-sh"><span class="toc-number">2.3.0.2.</span> <span class="toc-text">.&#x2F;start-master.sh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#start-worker-sh"><span class="toc-number">2.3.0.3.</span> <span class="toc-text">.&#x2F;start-worker.sh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jps"><span class="toc-number">2.3.0.4.</span> <span class="toc-text">jps</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/06/hadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4+Spark%E6%9C%AC%E5%9C%B0%E9%9B%86%E7%BE%A4/" title="hadoop伪分布式集群+Spark本地集群"><img src="/img/25.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hadoop伪分布式集群+Spark本地集群"/></a><div class="content"><a class="title" href="/2025/06/06/hadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4+Spark%E6%9C%AC%E5%9C%B0%E9%9B%86%E7%BE%A4/" title="hadoop伪分布式集群+Spark本地集群">hadoop伪分布式集群+Spark本地集群</a><time datetime="2025-06-06T09:16:35.000Z" title="发表于 2025-06-06 17:16:35">2025-06-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/05/hello-world/" title="Hello World"><img src="/img/17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2025/06/05/hello-world/" title="Hello World">Hello World</a><time datetime="2025-06-05T07:54:37.541Z" title="发表于 2025-06-05 15:54:37">2025-06-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By 哈密瓜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="/js/sakuraPlus.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
